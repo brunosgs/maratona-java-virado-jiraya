@@ -6,7 +6,7 @@ package maratona.java.devdojo.introducao.tiposprimitivos;
  	Crie variáveis para os campos descritos abaixo entre <> e imprima a seguinte mensagem: "Eu <nome>, morando
  	no endereço <endereco>, confirmo que recebi o salário de <salario>, na data <data>"
  */
-public class Aula15Exercicio {
+public class Aula14Exercicio {
 
 	public static void main(String[] args) {
 		String nome = "Bruno Gomes";
