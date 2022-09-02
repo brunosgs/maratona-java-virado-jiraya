@@ -1,7 +1,7 @@
 package maratona.java.devdojo.introducao.arrays;
 
 // OBS: variáveis do tipo primitivo não podem ser inicializadas com null, só tipos de referência: arrays, objetos.
-public class Aula32Arrays {
+public class Aula32Arrays01 {
 
 	public static void main(String[] args) {
 		/*
