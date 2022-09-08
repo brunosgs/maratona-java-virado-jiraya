@@ -40,4 +40,25 @@ public class Calculadora {
 		System.out.println("Número1: " + numero1);
 		System.out.println("Número2: " + numero2);
 	}
+
+	public void somaArray(int[] numeros) {
+		int soma = 0;
+
+		for (int num : numeros) {
+			soma += num;
+		}
+
+		System.out.println(soma);
+	}
+
+	// VarArgs só pode ser definido como o último argumento caso exista mais de um
+	public void somaVarArgs(int... numeros) {
+		int soma = 0;
+
+		for (int num : numeros) {
+			soma += num;
+		}
+
+		System.out.println(soma);
+	}
 }
