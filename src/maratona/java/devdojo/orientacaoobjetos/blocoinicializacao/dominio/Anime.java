@@ -4,7 +4,7 @@ package maratona.java.devdojo.orientacaoobjetos.blocoinicializacao.dominio;
  	Sequência da construção de um objeto:
 
  	1. Alocado espaço em memória para o objeto;
- 	2. Cada atributo de classe é criado e inicializado com valores default ou o que for atribuido a eles;
+ 	2. Cada atributo de classe é criado e inicializado com valores default ou o que for atribuído a eles;
  	3. Bloco de inicialização é executado;
  	4. Construtor é inicializado e executado.
 
