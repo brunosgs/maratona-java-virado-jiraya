@@ -1,6 +1,6 @@
-package maratona.java.devdojo.orientacaoobjetos.associacao.test;
+package maratona.java.devdojo.orientacaoobjetos.associacao.arraysobjetos.test;
 
-import maratona.java.devdojo.orientacaoobjetos.associacao.dominio.Jogador;
+import maratona.java.devdojo.orientacaoobjetos.associacao.arraysobjetos.dominio.Jogador;
 
 public class Aula64AssociacaoArraysComObjetos {
 

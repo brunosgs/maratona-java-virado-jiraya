@@ -1,7 +1,7 @@
-package maratona.java.devdojo.orientacaoobjetos.associacao.test;
+package maratona.java.devdojo.orientacaoobjetos.associacao.unidirecional.test;
 
-import maratona.java.devdojo.orientacaoobjetos.associacao.dominio.Jogador;
-import maratona.java.devdojo.orientacaoobjetos.associacao.dominio.Time;
+import maratona.java.devdojo.orientacaoobjetos.associacao.unidirecional.dominio.Jogador;
+import maratona.java.devdojo.orientacaoobjetos.associacao.unidirecional.dominio.Time;
 
 // Associação unidirecional uma para muitos (one to many)
 public class Aula65AssociacaoUnidirecional01 {

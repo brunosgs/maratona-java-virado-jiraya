@@ -1,7 +1,7 @@
-package maratona.java.devdojo.orientacaoobjetos.associacao.test;
+package maratona.java.devdojo.orientacaoobjetos.associacao.unidirecional.test;
 
-import maratona.java.devdojo.orientacaoobjetos.associacao.dominio.Escola;
-import maratona.java.devdojo.orientacaoobjetos.associacao.dominio.Professor;
+import maratona.java.devdojo.orientacaoobjetos.associacao.unidirecional.dominio.Escola;
+import maratona.java.devdojo.orientacaoobjetos.associacao.unidirecional.dominio.Professor;
 
 public class Aula66AssociacaoUnidirecional02 {
 

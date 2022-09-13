@@ -1,4 +1,4 @@
-package maratona.java.devdojo.orientacaoobjetos.associacao.dominio;
+package maratona.java.devdojo.orientacaoobjetos.associacao.unidirecional.dominio;
 
 public class Escola {
 	private String nome;
