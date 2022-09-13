@@ -1,4 +1,4 @@
-package maratona.java.devdojo.orientacaoobjetos.modificadorstatic.dominio;
+package maratona.java.devdojo.orientacaoobjetos.estaticos.modificadorstatic.dominio;
 
 public class Carro {
 	private String nome;

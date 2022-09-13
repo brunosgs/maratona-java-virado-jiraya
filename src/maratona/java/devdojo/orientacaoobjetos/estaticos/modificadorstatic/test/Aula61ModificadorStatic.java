@@ -1,6 +1,6 @@
-package maratona.java.devdojo.orientacaoobjetos.modificadorstatic.test;
+package maratona.java.devdojo.orientacaoobjetos.estaticos.modificadorstatic.test;
 
-import maratona.java.devdojo.orientacaoobjetos.modificadorstatic.dominio.Carro;
+import maratona.java.devdojo.orientacaoobjetos.estaticos.modificadorstatic.dominio.Carro;
 
 public class Aula61ModificadorStatic {
 
