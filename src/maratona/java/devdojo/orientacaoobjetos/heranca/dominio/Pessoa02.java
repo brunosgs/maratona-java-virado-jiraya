@@ -1,17 +1,29 @@
 package maratona.java.devdojo.orientacaoobjetos.heranca.dominio;
 
-// Pessoa é a classe mais genérica.
-public class Pessoa {
+/*
+ 	OBSERVAÇÕES:
+ 	- Todas classes do java são filhas de 'Object';
+
+ 	- Quando o atributo estiver com o modificador de acesso 'protected', as sub-classes
+ 	vão visualizar esse atributo e as classes que estiverem dentro do mesmo pacote;
+
+ 	- Quando inserido um novo contrutor na classe pai, esse contrutores vão ter que ser
+ 	inseridos nas seus filhos (sub-classes), classes que extendem.
+*/
+public class Pessoa02 {
 	private String nome;
 	private String cpf;
 	private Endereco endereco;
-
-	/*
-	 * Quando o atributo estiver com o modificador de acesso 'protected', as
-	 * sub-classes vão visualizar esse atributo e as classes que estiverem dentro do
-	 * mesmo pacote de 'Pessoa'.
-	 */
 	protected String rg;
+
+	public Pessoa02(String nome) {
+		this.nome = nome;
+	}
+
+	public Pessoa02(String nome, String cpf) {
+		this(nome);
+		this.cpf = cpf;
+	}
 
 	public String getNome() {
 		return nome;
