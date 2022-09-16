@@ -6,10 +6,10 @@ import maratona.java.devdojo.orientacaoobjetos.heranca.dominio.Pessoa;
 
 /* Quando existe heraça é defindo como 'é um' (Is-A). A herança é
    utilizado quando se precisa extender as funcionalidades de uma classe, tendo um
-   relacionamento entre elas. Com a utilização da heraça acaba existindo um acoplamento forte
+   relacionamento entre elas. Com a utilização da herança acaba existindo um acoplamento forte
    no código.
 
-   OBS: Evitar de utilizar em todo o código, evitando o acoplamento.
+   OBS: Evitar de utilizar em todo o código, para que o acoplamento não seja alto.
 */
 public class Aula71Heranca {
 

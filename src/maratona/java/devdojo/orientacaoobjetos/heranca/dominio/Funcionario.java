@@ -1,7 +1,7 @@
 package maratona.java.devdojo.orientacaoobjetos.heranca.dominio;
 
 /*
- 	Quando a classe 'Funcionario' extende de 'Pessoa' ela fica
+ 	Quando a classe 'Funcionario' estende de 'Pessoa' ela fica
  	mais especializada.
 */
 public class Funcionario extends Pessoa {

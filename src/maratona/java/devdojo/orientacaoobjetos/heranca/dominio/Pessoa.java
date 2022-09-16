@@ -1,6 +1,6 @@
 package maratona.java.devdojo.orientacaoobjetos.heranca.dominio;
 
-// Pessoa seria a classe mais genérica.
+// Pessoa é a classe mais genérica.
 public class Pessoa {
 	private String nome;
 	private String cpf;
