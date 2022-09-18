@@ -1,7 +1,7 @@
 package maratona.java.devdojo.orientacaoobjetos.modificadorfinal.dominio;
 
 /*
-	- Quando denifido um método como final, as classes que herdam (estendida)
+	- Quando denifido um método como 'final', as classes que herdam (estendida)
 	não conseguem sobrescrever o método.
 */
 public class Carro03 {
