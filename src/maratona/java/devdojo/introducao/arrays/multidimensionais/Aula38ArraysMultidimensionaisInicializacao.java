@@ -4,6 +4,7 @@ public class Aula38ArraysMultidimensionaisInicializacao {
 
 	public static void main(String[] args) {
 		int[][] arrayInt = new int[3][];
+		@SuppressWarnings("unused")
 		int[][] arrayInt2 = { { 0, 0 }, { 10, 20, 30 }, { 10, 20, 30, 40, 50, 60 } };
 
 		arrayInt[0] = new int[2];
