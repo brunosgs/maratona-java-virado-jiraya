@@ -14,6 +14,6 @@ public enum TipoPagamento {
 		}
 	};
 
-	// Ao definir como 'abstract', é denifio que deve ser sobrescrito o método
+	// Ao definir como 'abstract', é definido que deve ser sobrescrito o método
 	public abstract double calcularDesconto(double valor);
 }
