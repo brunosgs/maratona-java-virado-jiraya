@@ -11,8 +11,8 @@ public class Aula85MetodosAbstratos {
 
 		gerente.imprime();
 		desenvolvedor.imprime();
-//		System.out.println(gerente);
-//		System.out.println(desenvolvedor);
+		System.out.println(gerente);
+		System.out.println(desenvolvedor);
 	}
 
 }
