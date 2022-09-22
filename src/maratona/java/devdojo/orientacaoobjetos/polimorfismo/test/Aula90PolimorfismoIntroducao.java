@@ -5,8 +5,6 @@ import maratona.java.devdojo.orientacaoobjetos.polimorfismo.dominio.Tomate;
 import maratona.java.devdojo.orientacaoobjetos.polimorfismo.servico.CalculadoraImposto;
 
 /*
-	A construção para o calcular que o produto seja taxavel foi:
-
 	- Criado interface 'Taxavel' com assinatura de um método chamado 'calcularImposto()';
 
 	- Criado classe abstrata 'Produto' para servir de modelo para produtos que devem
