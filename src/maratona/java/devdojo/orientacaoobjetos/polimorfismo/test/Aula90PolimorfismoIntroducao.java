@@ -11,8 +11,8 @@ import maratona.java.devdojo.orientacaoobjetos.polimorfismo.servico.CalculadoraI
 	ser taxaveis e implementado a interface 'Taxavel';
 
 	- Criado duas classes que estendem de 'Produto', que são 'Computador' e 'Tomate'. Como
-	são duas classes concretas, precisa ser sobrescrito o método 'calcularImposto()' que vem
-	da classe abstrata 'Produto' que implementa 'Taxavel';
+	são duas classes concretas, precisa ser sobrescrito o método 'calcularImposto()' que é
+	assinado na inteface 'Taxavel' e a classe abstrata 'Produto' implementa 'Taxavel';
 
 	- Criado serviço 'CalculadoraImposto' com dois métodos estáticos que tem como função
 	calcular a taxa do produto e imprimir os produtos, utilizando do método que foi sobrescrito
