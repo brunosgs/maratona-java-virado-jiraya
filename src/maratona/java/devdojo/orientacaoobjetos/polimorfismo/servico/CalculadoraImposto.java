@@ -36,6 +36,15 @@ public class CalculadoraImposto {
 		System.out.println("Produto: " + produto.getNome());
 		System.out.println("Valor: " + produto.getValor());
 		System.out.println("Imposto: " + imposto);
+
+		// Verifica com o 'instanceof' se a instância do objeto é 'Tomate'
+		if (produto instanceof Tomate) {
+			// Executa um cast para localizar a data de validade
+			String dataValidade = ((Tomate) produto).getDataValidade();
+
+			System.out.println("Data validade: " + dataValidade);
+		}
+
 		System.out.println("--------------------------------");
 	}
 
