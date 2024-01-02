@@ -1,8 +1,9 @@
 package maratona.java.devdojo.extra.estudos.exercicios.lista01.exercicio03.dominio.animal;
 
-import maratona.java.devdojo.extra.estudos.exercicios.lista01.exercicio03.interfaces.Animal;
+import maratona.java.devdojo.extra.estudos.exercicios.lista01.exercicio03.dominio.orcamento.ItemOrcamentoComplexo;
+import maratona.java.devdojo.extra.estudos.exercicios.lista01.exercicio03.interfaces.AnimalOrcamento;
 
-public abstract class Animais implements Animal {
+public abstract class Animais implements AnimalOrcamento {
 	private String nome;
 	private String especie;
 
@@ -19,6 +20,11 @@ public abstract class Animais implements Animal {
 	@Override
 	public String getNomeAnimal() {
 		return this.nome;
+	}
+
+	@Override
+	public ItemOrcamentoComplexo orcamentoGastosAnimal() {
+		return null;
 	}
 
 }
