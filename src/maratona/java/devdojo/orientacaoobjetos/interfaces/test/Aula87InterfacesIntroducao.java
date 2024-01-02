@@ -1,7 +1,7 @@
-package maratona.java.devdojo.orientacaoobjetos.interfases.test;
+package maratona.java.devdojo.orientacaoobjetos.interfaces.test;
 
-import maratona.java.devdojo.orientacaoobjetos.interfases.dominio.DatabaseLoader;
-import maratona.java.devdojo.orientacaoobjetos.interfases.dominio.FileLoader;
+import maratona.java.devdojo.orientacaoobjetos.interfaces.dominio.DatabaseLoader;
+import maratona.java.devdojo.orientacaoobjetos.interfaces.dominio.FileLoader;
 
 public class Aula87InterfacesIntroducao {
 

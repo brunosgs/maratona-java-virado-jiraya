@@ -1,4 +1,4 @@
-package maratona.java.devdojo.orientacaoobjetos.interfases.dominio;
+package maratona.java.devdojo.orientacaoobjetos.interfaces.dominio;
 
 /*
 	- Uma classe pode implementar mais de uma interface.

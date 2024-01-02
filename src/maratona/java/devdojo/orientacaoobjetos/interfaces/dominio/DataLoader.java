@@ -1,4 +1,4 @@
-package maratona.java.devdojo.orientacaoobjetos.interfases.dominio;
+package maratona.java.devdojo.orientacaoobjetos.interfaces.dominio;
 
 /*
 	- Interface é um contrato, para que classes que implementem a interface	tenham que
