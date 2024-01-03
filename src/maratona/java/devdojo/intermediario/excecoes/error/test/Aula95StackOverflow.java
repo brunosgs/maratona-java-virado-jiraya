@@ -1,4 +1,4 @@
-package maratona.java.devdojo.intermediario.excecoes.test;
+package maratona.java.devdojo.intermediario.excecoes.error.test;
 
 /**
  * ERRORS<br>
