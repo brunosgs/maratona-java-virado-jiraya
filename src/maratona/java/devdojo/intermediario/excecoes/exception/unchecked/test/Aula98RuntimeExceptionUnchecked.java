@@ -6,7 +6,7 @@ package maratona.java.devdojo.intermediario.excecoes.exception.unchecked.test;
  * - Ao utilizar 'throw new' esta lançando uma exceção, sempre que for lançar um exceção,
  * utilizar as exceções mais especificas;
  * <p>
- * - No exemplo de divisão por 0 houve a idenfificação do problema, não foi necessario
+ * - No exemplo de divisão por 0 houve a idenficação do problema, não foi necessario
  * continuar com o try...catch, mas como foi lançado deve sempre ser tratado,
  * para que o programa continue o fluxo.
  * <p>
