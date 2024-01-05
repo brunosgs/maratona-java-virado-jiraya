@@ -1,4 +1,4 @@
-package maratona.java.devdojo.intermediario.excecoes.runtime.test;
+package maratona.java.devdojo.intermediario.excecoes.exception.test;
 
 /**
  * Checked e Unchecked<br>
@@ -18,8 +18,8 @@ public class Aula96RuntimeException {
 		int[] num = {1, 2};
 
 
-		System.out.println(num[2]); // Lança o exce de ArrayIndexOfBounds
-		System.out.println(obj.toString()); // Lança exce de NullPointer
+		System.out.println(num[2]); // Lança o exceção de ArrayIndexOfBounds
+		System.out.println(obj.toString()); // Lança exceção de NullPointer
 
 	}
 
