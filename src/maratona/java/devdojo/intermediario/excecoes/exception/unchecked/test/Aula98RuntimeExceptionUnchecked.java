@@ -3,7 +3,7 @@ package maratona.java.devdojo.intermediario.excecoes.exception.unchecked.test;
 /**
  * Lançado exceções unchecked:
  * <p>
- * - Ao utilizar 'throw new' esta lançando uma exceção, sempre que for lançar um exceção,
+ * - Ao utilizar 'throw new' esta lançando uma exceção, sempre que for lançar uma exceção,
  * utilizar as exceções mais especificas;
  * <p>
  * - No exemplo de divisão por 0 houve a idenficação do problema, não foi necessario
