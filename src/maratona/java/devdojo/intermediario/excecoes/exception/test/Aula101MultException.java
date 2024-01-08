@@ -5,15 +5,13 @@ import java.sql.SQLException;
 
 /**
  * - Ao capturar multiplas exceções, caso uma a exception lançada seja a que existe
- * no 'catch' ela sera usado o tratamento feito;
- * <p>
- * - Mas caso não seja encontrado o exception, sera lançado no main da aplicação ou
+ * no 'catch' ela sera usada. Mas caso não seja encontrado o exception, sera lançado no main da aplicação ou
  * em quem chamou o método;
  * <p>
  * - Como regra, não se pode colocar um tipo mais generico a frente de outros nas chamadas catch,
  * porque senão nunca serão chamados. O proprio compilador informara um erro. Exemplo é o método
  * 'multExceptionsGeneric()', onde todos as exceptions capturadas são filhas de 'RuntimeException', como
- * foi lançado uma exception e o primeiro catch é o mais generico os outros catchs nunca serão excecutados
+ * foi lançado uma exception e o primeiro catch é o mais genérico os outros catchs nunca serão excecutados
  * por causa da regra do polimorfismo.
  * <p>
  * - Na assinatura do método é possível especificar quais são as exceptions que serão lançadas separando
