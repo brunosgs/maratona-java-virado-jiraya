@@ -1,4 +1,4 @@
-package maratona.java.devdojo.intermediario.classesutilitarias.internacionalizacao.test;
+package maratona.java.devdojo.intermediario.classesutilitarias.datas.internacionalizacao.test;
 
 import java.util.Locale;
 

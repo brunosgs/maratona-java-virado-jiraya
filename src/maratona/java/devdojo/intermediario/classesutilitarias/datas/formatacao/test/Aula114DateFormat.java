@@ -1,4 +1,4 @@
-package maratona.java.devdojo.intermediario.classesutilitarias.formatacao.test;
+package maratona.java.devdojo.intermediario.classesutilitarias.datas.formatacao.test;
 
 import java.text.DateFormat;
 import java.util.Calendar;

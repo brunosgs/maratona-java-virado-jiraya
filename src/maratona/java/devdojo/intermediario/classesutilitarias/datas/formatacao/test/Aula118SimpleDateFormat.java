@@ -1,4 +1,4 @@
-package maratona.java.devdojo.intermediario.classesutilitarias.formatacao.test;
+package maratona.java.devdojo.intermediario.classesutilitarias.datas.formatacao.test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
