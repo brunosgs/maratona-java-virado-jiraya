@@ -9,6 +9,9 @@ import java.time.Period;
  * datas;
  * <p>
  * - Ela se utiliza da ISO 8601;
+ * <p>
+ * - A 'Period' não aceita LocalTime, porque ela não trabalha com tempo em
+ * horas, minutos, segundos...;
  */
 public class Aula124Period {
 
