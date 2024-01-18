@@ -1,5 +1,6 @@
 package maratona.java.devdojo.intermediario.classesutilitarias.datas.data.test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 
@@ -17,7 +18,7 @@ public class Aula124Period {
 
 		Period periodBetween = Period.between(now.toLocalDate(), nowAfaterTwoYears.toLocalDate());
 		Period peridoOfDays = Period.ofDays(10);
-		Period periodOfWeeks = Period.ofWeeks(38);
+		Period periodOfWeeks = Period.ofWeeks(58);
 		Period periodOfMonths = Period.ofMonths(3);
 		Period periodOfYears = Period.ofYears(3);
 
@@ -26,6 +27,13 @@ public class Aula124Period {
 		System.out.println(periodOfWeeks);
 		System.out.println(periodOfMonths);
 		System.out.println(periodOfYears);
+
+		/*
+		 * Existe diferença em 15 meses para 1 ano e 3 meses, o retorno de 'getMonths()'
+		 * seria 1, verificar a documentação
+		 */
+		System.out.println(
+				Period.between(LocalDate.now(), LocalDate.now().plusDays(periodOfWeeks.getDays())).getMonths());
 	}
 
 }
