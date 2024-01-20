@@ -1,0 +1,29 @@
+package maratona.java.devdojo.Bbasico.orientacaoobjetos.enumeracao.test;
+
+import maratona.java.devdojo.Bbasico.orientacaoobjetos.enumeracao.dominio.Cliente03;
+import maratona.java.devdojo.Bbasico.orientacaoobjetos.enumeracao.enums.TipoCliente;
+import maratona.java.devdojo.Bbasico.orientacaoobjetos.enumeracao.enums.TipoPagamento;
+
+public class Aula83EnumeracaoBuscaAtributos {
+
+	public static void main(String[] args) {
+		Cliente03 cliente01 = new Cliente03("Roberto", TipoCliente.PESSOA_FISICA, TipoPagamento.DEBITO);
+		Cliente03 cliente02 = new Cliente03("Maria", TipoCliente.PESSOA_JURIDICA, TipoPagamento.CREDITO);
+
+		Cliente03[] clientes = { cliente01, cliente02 };
+
+		for (Cliente03 cliente : clientes) {
+			System.out.println(cliente);
+		}
+
+		System.out.println(TipoPagamento.DEBITO.calcularDesconto(100));
+		System.out.println(TipoPagamento.CREDITO.calcularDesconto(100));
+
+		TipoCliente tipoCliente = TipoCliente.valueOf("PESSOA_FISICA");
+		System.out.println(tipoCliente.getNomeRelatorio());
+
+		TipoCliente tipoClientePorRelatorio = TipoCliente.tipoClientePorRelatorio("Pessoa Física");
+		System.out.println(tipoClientePorRelatorio);
+	}
+
+}
