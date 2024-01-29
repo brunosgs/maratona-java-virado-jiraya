@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  * padrões em um texto;
  * <p>
  * - No exemplo 'texto2' com o regex = "aba", ao executar ele localiza somente
- * as posições 0 e 4, quando o matcher localiza ele não retorna para cadeira de
+ * as posições 0 e 4, quando o matcher localiza ele não retorna para cadeia de
  * caracteres anterior, ele continua de onde parou até localizar a próxima
  * sequencia que iguale ao que foi passado para o pattern;
  */
