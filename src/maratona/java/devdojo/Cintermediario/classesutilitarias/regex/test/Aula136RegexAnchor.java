@@ -1,7 +1,7 @@
 package maratona.java.devdojo.Cintermediario.classesutilitarias.regex.test;
 
 /**
- * - Para localizar padrões em inécios de string o meta caracter de anchor que
+ * - Para localizar padrões em inícios de string o meta caracter de anchor que
  * se utiliza é '^', por exemplo: ^s, onde ele vai localizar se o começo do
  * texto contem s;
  * <p>
@@ -25,7 +25,6 @@ public class Aula136RegexAnchor {
 		 */
 		regex = "[^\\w+]";
 		TestesRegex.testeRegex(regex, textoEx);
-
 	}
 
 }
