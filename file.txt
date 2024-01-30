@@ -2,3 +2,7 @@ Teste de escrita em arquivos 'txt'
 Teste de escrita em arquivos 'txt'
 Teste de escrita em arquivos 'txt'
 Teste de escrita em arquivos 'txt'
+Inserindo dados no arquivo pelo BufferedWriter
+Inserindo dados no arquivo pelo BufferedWriter
+Inserindo dados no arquivo pelo BufferedWriter
+Inserindo dados no arquivo pelo BufferedWriter
