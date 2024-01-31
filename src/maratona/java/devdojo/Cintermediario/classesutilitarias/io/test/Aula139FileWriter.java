@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.util.Date;
 
 /**
- * - A classe 'FileWriter', serve para fazer escrita em arquivos mesmo sendo
- * lowlevel o que ela faz e trabalhar só com a escrita;
+ * - A classe 'FileWriter', serve para fazer escrita em arquivos, mesmo sendo
+ * lowlevel o que ela faz é trabalhar só com a escrita;
  * <p>
  * - Antes de fechar um arquivo, é uma boa prática utilizar o flush(), mesmo que
  * ele seja chamando implicitamente. O que esse método vai fazer é só finalizar

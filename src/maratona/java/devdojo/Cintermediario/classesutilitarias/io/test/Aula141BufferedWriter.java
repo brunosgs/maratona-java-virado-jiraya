@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * - O BufferedWriter contem um método que faz quebra de linhas no arquivo.
+ * - O BufferedWriter contém um método que faz quebra de linhas no arquivo.
  * Dependendo do sistema operacional o \n não é uma boa escolha;
  */
 public class Aula141BufferedWriter {
