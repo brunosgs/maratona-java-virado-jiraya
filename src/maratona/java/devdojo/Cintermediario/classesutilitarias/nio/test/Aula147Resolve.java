@@ -5,10 +5,11 @@ import java.nio.file.Paths;
 
 /**
  * - Quando não é adicionado o '/' na frente do caminho, ele é um caminho
- * relativo, caso contrario é um caminho absoluto;
+ * relativo, caso contrario é um caminho absoluto, exemplo: absoluto = '/home' e
+ * relativo = 'home';
  * <p>
- * - Quando a tentativas de resolver path que já sejam absolutos a partir de um
- * path relativo, ele retorna o absoluto;
+ * - Quando existe a tentativa de resolver path que já sejam absolutos a partir
+ * de um path relativo, ele retorna o absoluto;
  */
 public class Aula147Resolve {
 

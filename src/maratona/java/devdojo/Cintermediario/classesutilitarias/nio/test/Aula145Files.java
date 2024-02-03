@@ -9,7 +9,7 @@ import java.nio.file.StandardCopyOption;
 /**
  * - Diferente do método 'createDirectory' o 'createDirectories' não lança
  * exceções caso já exista os diretórios. Da mesma forma o 'createFile', não
- * lança a exceção caso já estiva o arquivo;
+ * lança a exceção caso já exista o arquivo;
  */
 public class Aula145Files {
 
