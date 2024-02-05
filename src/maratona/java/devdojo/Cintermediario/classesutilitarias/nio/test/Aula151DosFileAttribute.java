@@ -7,6 +7,10 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.DosFileAttributeView;
 import java.nio.file.attribute.DosFileAttributes;
 
+/**
+ * A 'DosFile' serve para ser utilizando em ambientes que o sistema operacional
+ * é 'Windows';
+ */
 public class Aula151DosFileAttribute {
 
 	public static void main(String[] args) {
