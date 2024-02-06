@@ -20,11 +20,11 @@ public class Aula154SimpleFileVisitor {
 
 		try {
 			System.out.println("Busca com Regex");
-			Files.walkFileTree(root, new ListAllFilesRegex());
+			Files.walkFileTree(root, new ListAllFilesJavaRegex());
 
 			System.out.println(" ---------------------------------------------- ");
 			System.out.println("Busca .java");
-			Files.walkFileTree(root, new ListAllFilesRegex());
+			Files.walkFileTree(root, new ListAllFilesJava());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -32,7 +32,7 @@ public class Aula154SimpleFileVisitor {
 
 }
 
-class ListAllFilesRegex extends SimpleFileVisitor<Path> {
+class ListAllFilesJavaRegex extends SimpleFileVisitor<Path> {
 	@Override
 	public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
 		String regex = "\\w+\\.java";
@@ -47,7 +47,7 @@ class ListAllFilesRegex extends SimpleFileVisitor<Path> {
 	}
 }
 
-class ListAllFiles extends SimpleFileVisitor<Path> {
+class ListAllFilesJava extends SimpleFileVisitor<Path> {
 	@Override
 	public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
 		if (file.getFileName().toString().endsWith(".java")) {
