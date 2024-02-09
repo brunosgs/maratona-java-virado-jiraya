@@ -8,7 +8,6 @@ import java.nio.file.Paths;
 /**
  * - O objetivo da classe 'PathMatcher' é facilitar a busca por arquivos e
  * diretórios;
- * <p>
  */
 public class Aula156PathMatcher {
 
