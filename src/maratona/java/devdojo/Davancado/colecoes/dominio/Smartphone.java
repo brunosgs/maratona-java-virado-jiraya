@@ -30,6 +30,4 @@ public class Smartphone {
 		return "Smartphone [serialNumber=" + serialNumber + ", marca=" + marca + "]";
 	}
 
-
-
 }
