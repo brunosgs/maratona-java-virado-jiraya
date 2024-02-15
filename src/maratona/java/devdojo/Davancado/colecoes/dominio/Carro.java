@@ -65,4 +65,22 @@ public class Carro {
 
 		return serialNumber != null && serialNumber.equals(carro.serialNumber);
 	}
+
+	/**
+	 * Regras para hashCode
+	 * <p>
+	 * - Se x.equals(y) == true, o y.hashCode() == x.hashCode() tem que ser iguais;
+	 * <p>
+	 * - y.hashCode() == x.hashCode() não necessariamente o equals de y.equals(x)
+	 * tem que ser true;
+	 * <p>
+	 * - x.equals(y) == false o hashCode tem que ser diferente;
+	 * <p>
+	 * - Se y.hashCode() != x.hashCode(), y.equals(x) deverá ser false;
+	 */
+	@Override
+	public int hashCode() {
+		return serialNumber == null ? 0 : this.serialNumber.hashCode();
+	}
+
 }
