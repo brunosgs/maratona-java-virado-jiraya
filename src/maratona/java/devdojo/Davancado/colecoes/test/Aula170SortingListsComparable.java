@@ -12,7 +12,7 @@ import maratona.java.devdojo.Davancado.colecoes.dominio.Manga;
  * implementar na classe = objeto o Comparable<'T'> onde o mesmo sera
  * obrigatorio uma implementação de 'compareTo()';
  */
-public class Aula170SortingLists {
+public class Aula170SortingListsComparable {
 
 	public static void main(String[] args) {
 		List<Manga> mangas = new ArrayList<>();
