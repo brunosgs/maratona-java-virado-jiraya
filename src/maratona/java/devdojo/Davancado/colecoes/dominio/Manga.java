@@ -95,8 +95,8 @@ public class Manga implements Comparable<Manga> {
 		 * <p>
 		 * 2: return Double.compare(preco, other.getPreco());
 		 */
-		//return Double.compare(preco, other.getPreco());
-		return this.id.compareTo(other.getId());
+		return Double.compare(preco, other.getPreco());
+		//return this.id.compareTo(other.getId());
 	}
 
 }
