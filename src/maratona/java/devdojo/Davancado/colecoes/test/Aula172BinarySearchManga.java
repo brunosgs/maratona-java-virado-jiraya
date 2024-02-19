@@ -7,14 +7,14 @@ import java.util.List;
 import maratona.java.devdojo.Davancado.colecoes.dominio.Manga;
 
 /**
- * - O Binary Search faz uma busca na lista e retorna o indíce do objeto
- * localizado. Caso não encontro ele se baseia em uma regra;
+ * - O Binary Search faz uma busca na lista e retorna o índice do objeto
+ * localizado. Caso não encontre, ele se baseia em uma regra;
  * <p>
- * - O retorno se baseando a regra sera sempre a posição que deveria ser
+ * - O retorno se baseando a regra que será sempre a posição onde deveria ser
  * inserido, mas a soma de -1;
  * <p>
- * - Para que funcione de maneira esperada o algoritmo binary search, a lista
- * deve já estar ordenada, se não o resutado não será o esperado = 'undefined';
+ * - Para funcionar de maneira esperada o algoritmo binary search, a lista deve
+ * já estar ordenada, se não o resutado não será o esperado = 'undefined'.
  */
 public class Aula172BinarySearchManga {
 

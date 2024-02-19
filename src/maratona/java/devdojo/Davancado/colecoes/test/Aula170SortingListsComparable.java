@@ -7,10 +7,10 @@ import java.util.List;
 import maratona.java.devdojo.Davancado.colecoes.dominio.Manga;
 
 /**
- * - Collections.sort() para que seja ordernado um objeto diferente de String e
- * Double que já possuem na sua implementação o método 'compareTo()', deve se
- * implementar na classe = objeto o Comparable<'T'> onde o mesmo sera
- * obrigatorio uma implementação de 'compareTo()';
+ * - Collections.sort() para ser ordenado um objeto diferente de String e Double
+ * que já possuem na sua implementação o método 'compareTo()', deve se
+ * implementar na classe = objeto o Comparable<'T'> onde o mesmo será
+ * obrigatória uma implementação de 'compareTo()';
  */
 public class Aula170SortingListsComparable {
 

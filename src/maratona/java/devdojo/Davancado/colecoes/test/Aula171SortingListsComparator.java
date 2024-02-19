@@ -8,8 +8,8 @@ import maratona.java.devdojo.Davancado.colecoes.dominio.Manga;
 
 /**
  * - Caso em situações onde já exista um 'Comparable' implementado a um objeto,
- * mas é preciso fazer uma ordernação de outro atributo, se implementa o
- * 'Comparator' customizado, que vai implementar o metódo 'campare()';
+ * mas é preciso fazer uma ordenação de outro atributo, se implementa o
+ * 'Comparator' customizado, que vai implementar o método 'campare()';
  */
 public class Aula171SortingListsComparator {
 
