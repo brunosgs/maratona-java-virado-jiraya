@@ -55,7 +55,7 @@ public class Manga implements Comparable<Manga> {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, nome, preco);
+		return Objects.hash(id, nome);
 	}
 
 	@Override
@@ -70,8 +70,7 @@ public class Manga implements Comparable<Manga> {
 			return false;
 		}
 		Manga other = (Manga) obj;
-		return Objects.equals(id, other.id) && Objects.equals(nome, other.nome)
-				&& Double.doubleToLongBits(preco) == Double.doubleToLongBits(other.preco);
+		return Objects.equals(id, other.id) && Objects.equals(nome, other.nome);
 	}
 
 	@Override
