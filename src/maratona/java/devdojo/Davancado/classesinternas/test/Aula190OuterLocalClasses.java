@@ -12,7 +12,7 @@ package maratona.java.devdojo.Davancado.classesinternas.test;
  * efetivamente final. Essa regra serve também para os pârametros, ele deve ser
  * final ou efetivamente final;
  */
-public class Aula190OuterClasses {
+public class Aula190OuterLocalClasses {
 	private String name = "Midoriya";
 
 	void print(String params) {
@@ -32,7 +32,7 @@ public class Aula190OuterClasses {
 	}
 
 	public static void main(String[] args) {
-		new Aula190OuterClasses().print("Teste");
+		new Aula190OuterLocalClasses().print("Teste");
 	}
 
 }
