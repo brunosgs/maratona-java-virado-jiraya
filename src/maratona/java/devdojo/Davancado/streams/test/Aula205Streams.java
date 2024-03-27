@@ -6,13 +6,13 @@ import java.util.List;
 import maratona.java.devdojo.Davancado.streams.dominio.LightNovel;
 
 /**
- * - A lista e o stream possuem o método forEach() mas séria uma prática ruim
- * utilizar a chamada de stream e depois a chamda de um forEach(), uso de
- * recurso desnecessário para fazer uma ação igual, caso queira só imprimir,
- * utilizar a chamada direto da lista;
+ * - A lista e o stream possuem o método forEach() mas é uma prática ruim
+ * utilizar a chamada de stream e depois a chamada de um forEach(), seria um uso
+ * de recurso desnecessário para fazer uma ação igual, caso queira fazer uma
+ * ação simples como o imprimir, utilizar a chamada direto da lista;
  * <p>
- * - O distinct pode haver problemas caso o equals e o hash code não estejam
- * declarados, ele pode não funcionar corretamente;
+ * - O distinct pode haver problemas caso o equals e o hashCode não estejam
+ * declarados no objeto, ele pode não funcionar corretamente;
  */
 public class Aula205Streams {
 	private static List<LightNovel> listLightNovel = new ArrayList<>(
