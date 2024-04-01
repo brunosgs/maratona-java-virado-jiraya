@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * - 'Reduce' é um acumulador, onde o retorno sempre será um unico resultado;
  */
-public class Aula209StreamsReduce {
+public class Aula209Reduce {
 
 	public static void main(String[] args) {
 		// Reduce utilizando valores númericos

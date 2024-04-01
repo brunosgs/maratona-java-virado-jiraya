@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  * uma lista de lista, se utiliza o flatMap(). No exemplo só utilizar map o
  * retorno foi um 'Stream<String[]>' = uma streams de arrays;
  */
-public class Aula207StreamsFlatMap {
+public class Aula207FlatMap {
 
 	public static void main(String[] args) {
 		List<String> words = List.of("Gomu", "Gomu", "No", "Mi");

@@ -10,7 +10,7 @@ import maratona.java.devdojo.Davancado.streams.dominio.LightNovel;
  * primeiro o map para extrair os valores a serem reduzidos = reduce e depois
  * executado o reduce para a soma;
  */
-public class Aula210StreamsReduce {
+public class Aula210Reduce {
 	private static List<LightNovel> listLightNovel = new ArrayList<>(
 			List.of(new LightNovel("Tensei Shittara", 8.99), new LightNovel("Overlord", 3.99),
 					new LightNovel("Violet Evergarden", 15.99), new LightNovel("No Game no life", 2.99),

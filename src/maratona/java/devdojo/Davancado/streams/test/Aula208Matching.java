@@ -21,7 +21,7 @@ import maratona.java.devdojo.Davancado.streams.dominio.LightNovel;
  * <p>
  * - findAny, findFirst e max retonam um 'Optional';
  */
-public class Aula208StreamMatching {
+public class Aula208Matching {
 	private static List<LightNovel> listLightNovel = new ArrayList<>(
 			List.of(new LightNovel("Tensei Shittara", 8.99), new LightNovel("Overlord", 3.99),
 					new LightNovel("Violet Evergarden", 15.99), new LightNovel("No Game no life", 2.99),

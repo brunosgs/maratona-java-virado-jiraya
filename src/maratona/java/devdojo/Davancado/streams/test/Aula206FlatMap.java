@@ -3,7 +3,7 @@ package maratona.java.devdojo.Davancado.streams.test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Aula206StreamsFlatMap {
+public class Aula206FlatMap {
 
 	public static void main(String[] args) {
 		List<List<String>> devdojo = new ArrayList<>();

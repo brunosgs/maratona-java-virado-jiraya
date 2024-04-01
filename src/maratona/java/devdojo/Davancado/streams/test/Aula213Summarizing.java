@@ -12,7 +12,7 @@ import maratona.java.devdojo.Davancado.streams.dominio.LightNovel;
  * - A classe Collectors possui várias implementações para coletar a informação
  * gerada atravéz do stream;
  */
-public class Aula213StreamsSummarizing {
+public class Aula213Summarizing {
 	private static List<LightNovel> listLightNovel = new ArrayList<>(
 			List.of(new LightNovel("Tensei Shittara", 8.99), new LightNovel("Overlord", 3.99),
 					new LightNovel("Violet Evergarden", 15.99), new LightNovel("No Game no life", 2.99),
