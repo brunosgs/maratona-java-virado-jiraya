@@ -52,6 +52,12 @@ public class Aula217GroupingBy {
 						Collectors.mapping(Aula217GroupingBy::getPromotion, Collectors.toCollection(LinkedHashSet::new))));
 		System.out.println(mapCollectToLinkedHashSet);
 		System.out.println();
+
+		listLightNovel.stream()
+				.collect(Collectors.groupingBy(LightNovel::getCategory,
+						Collectors.groupingBy(Aula217GroupingBy::getPromotion, Collectors.summarizingDouble(LightNovel::getPrice))))
+				.entrySet()
+				.forEach(System.out::println);
 	}
 
 	private static Promotion getPromotion(LightNovel ln) {
