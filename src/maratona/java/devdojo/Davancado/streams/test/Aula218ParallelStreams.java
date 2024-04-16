@@ -6,6 +6,15 @@ import java.util.stream.Stream;
 /**
  * - Aplicando soma de várias formas e utilizando o paralelismo com threads do
  * streams;
+ * <p>
+ * - Cuidados que deve se tomar a usar o 'Parallel Streams': Utilização de
+ * unboxing e boxing; Operações de limit() e findFirts() não foram feitas para
+ * ser trabalhadas paralelamente, já o findAny() sim; Custo total da computação,
+ * N elementos para quantidade de processamentos P; Quantidade de dados, se for
+ * muito pequena não compensa fazer paralelismo; Tipo de coleções, ArrayList,
+ * Set é boa para paralelismo já a linkedList, interate() do stream não são
+ * boas; Tamanho do Stream (tamanha definido); Cuidado com processamento do merge;
+ *
  */
 public class Aula218ParallelStreams {
 
