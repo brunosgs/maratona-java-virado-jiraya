@@ -6,11 +6,11 @@ import maratona.java.devdojo.Davancado.threads.dominio.ThreadExampleRunnable;
  * - A mesma thread não pode ser feito o '.start()' duas vezes, ele lançara um
  * exception: 'IllegalThreadStateException';
  * <p>
- * - O main executa linha por linha até chega em um outro start de uma thread
- * onde essa pode executar ou não no momento, vai depender do scheduler
- * (agendador). O scheduler pode definir que o main espere para a nova thread
- * executar ou finalize, ele vai cordenar como elas vão ser executadas e quem
- * vai ficar executando enquando existe espera ou não.
+ * - O main executa linha por linha até chega em outro start de uma thread onde
+ * essa pode executar ou não no momento, vai depender do scheduler (agendador).
+ * O scheduler pode definir que o main espere para a nova thread executar ou
+ * finalize, ele vai coordenar como elas vão ser executadas e quem vai ficar
+ * executando enquanto existe espera ou não.
  * <p>
  * - Estados que a thread pode ter são: New -> Runnable <-> Running ->
  * Waiting/Blocked -> Runnable <-> Running -> Dead

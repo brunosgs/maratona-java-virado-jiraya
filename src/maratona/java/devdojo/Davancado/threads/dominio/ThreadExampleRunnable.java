@@ -19,6 +19,13 @@ public class ThreadExampleRunnable implements Runnable {
 			if (i % 100 == 0) {
 				System.out.println();
 			}
+
+			try {
+				// Espera 2 segundos antes de continuar
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
