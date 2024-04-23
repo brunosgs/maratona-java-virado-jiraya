@@ -1,10 +1,10 @@
 package maratona.java.devdojo.Davancado.threads.dominio;
 
 // O correto de se trabalhar com threads seria utilizando interfaces
-public class ThreadExampleRunnable implements Runnable {
+public class ThreadCharRunnable implements Runnable {
 	private char c;
 
-	public ThreadExampleRunnable(char c) {
+	public ThreadCharRunnable(char c) {
 		this.c = c;
 	}
 

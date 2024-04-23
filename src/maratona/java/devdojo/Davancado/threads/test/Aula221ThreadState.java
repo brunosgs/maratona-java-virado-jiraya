@@ -1,6 +1,6 @@
 package maratona.java.devdojo.Davancado.threads.test;
 
-import maratona.java.devdojo.Davancado.threads.dominio.ThreadExampleRunnable;
+import maratona.java.devdojo.Davancado.threads.dominio.ThreadCharRunnable;
 
 /**
  * - A mesma thread não pode ser feito o '.start()' duas vezes, ele lançara um
@@ -22,10 +22,10 @@ import maratona.java.devdojo.Davancado.threads.dominio.ThreadExampleRunnable;
 public class Aula221ThreadState {
 
 	public static void main(String[] args) {
-		Thread thread1 = new Thread(new ThreadExampleRunnable('A'));
-		Thread thread2 = new Thread(new ThreadExampleRunnable('B'));
-		Thread thread3 = new Thread(new ThreadExampleRunnable('C'));
-		Thread thread4 = new Thread(new ThreadExampleRunnable('D'));
+		Thread thread1 = new Thread(new ThreadCharRunnable('A'));
+		Thread thread2 = new Thread(new ThreadCharRunnable('B'));
+		Thread thread3 = new Thread(new ThreadCharRunnable('C'));
+		Thread thread4 = new Thread(new ThreadCharRunnable('D'));
 
 		thread1.start();
 		thread2.start();

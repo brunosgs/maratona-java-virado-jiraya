@@ -1,7 +1,7 @@
 package maratona.java.devdojo.Davancado.threads.test;
 
 import maratona.java.devdojo.Davancado.threads.dominio.ThreadExample;
-import maratona.java.devdojo.Davancado.threads.dominio.ThreadExampleRunnable;
+import maratona.java.devdojo.Davancado.threads.dominio.ThreadCharRunnable;
 
 /**
  * - Definições: Pode ser um objeto ou um processo;
@@ -26,10 +26,10 @@ public class Aula220Threads {
 		ThreadExample t3 = new ThreadExample('C');
 		ThreadExample t4 = new ThreadExample('D');
 
-		Thread thread1 = new Thread(new ThreadExampleRunnable('A'));
-		Thread thread2 = new Thread(new ThreadExampleRunnable('B'));
-		Thread thread3 = new Thread(new ThreadExampleRunnable('C'));
-		Thread thread4 = new Thread(new ThreadExampleRunnable('D'));
+		Thread thread1 = new Thread(new ThreadCharRunnable('A'));
+		Thread thread2 = new Thread(new ThreadCharRunnable('B'));
+		Thread thread3 = new Thread(new ThreadCharRunnable('C'));
+		Thread thread4 = new Thread(new ThreadCharRunnable('D'));
 
 		// Só executa o objeto e não cria;
 		t1.run();
