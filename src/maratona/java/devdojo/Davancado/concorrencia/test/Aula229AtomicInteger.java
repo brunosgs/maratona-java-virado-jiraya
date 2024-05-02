@@ -1,6 +1,6 @@
 package maratona.java.devdojo.Davancado.concorrencia.test;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import maratona.java.devdojo.Davancado.concorrencia.dominio.Counter;
 
 /**
  * Para que uma transação seja atômica, ela deve fazer do início ao fim sem
@@ -36,25 +36,6 @@ public class Aula229AtomicInteger {
 
 		System.out.println(counter.getCount());
 		System.out.println(counter.getAtomicInteger());
-	}
-
-}
-
-class Counter {
-	private int count;
-	private AtomicInteger atomicInteger = new AtomicInteger();
-
-	void increment() {
-		count++;
-		atomicInteger.incrementAndGet();
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public AtomicInteger getAtomicInteger() {
-		return atomicInteger;
 	}
 
 }
