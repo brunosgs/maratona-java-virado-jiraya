@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 import maratona.java.devdojo.Davancado.concorrencia.dominio.Members;
 import maratona.java.devdojo.Davancado.concorrencia.service.EmailDeliveryService;
 
-public class Aula231Conditions {
+public class Aula231Condition {
 
 	public static void main(String[] args) {
 		Members members = new Members();
