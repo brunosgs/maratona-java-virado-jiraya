@@ -6,6 +6,10 @@ import maratona.java.devdojo.Davancado.concorrencia.dominio.MapReadWrite;
 
 /**
  * - Gerando duas threads para leitura e escrita;
+ * <p>
+ * - Um lock de read não é blocante para outro lock de read, mas para um write
+ * sim. Já o write não deixa outro read ou write fazer o lock, quando este
+ * obtiver o lock.
  */
 public class Aula232ReentrantReadWriteLock {
 
@@ -20,24 +24,27 @@ public class Aula232ReentrantReadWriteLock {
 		};
 
 		Runnable reader = () -> {
-			if (rrwl.isWriteLocked()) {
-				System.out.println("WRITE LOCKED!" + Thread.currentThread()
-						.getName());
-			} else {
+			try {
+				Thread.sleep(8000L); // Ativo o sleep de 8sec
+
+				if (rrwl.isWriteLocked()) {
+					System.out.println("WRITE LOCKED!" + Thread.currentThread()
+							.getName());
+				}
+
 				rrwl.readLock()
-						.lock();
+						.lock(); // Caso esteja com o writeLock, não consegue recuperar o lock
 
 				System.out.println("FINALLY I GOT THE DAMN LOCK");
 
-				try {
-					System.out.println(Thread.currentThread()
-							.getName() + " " + mapReadWrite.allKeys() + " \n");
-				} finally {
-					rrwl.readLock()
-							.unlock();
-				}
+				System.out.println(Thread.currentThread()
+						.getName() + " " + mapReadWrite.allKeys() + " \n");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} finally {
+				rrwl.readLock()
+						.unlock();
 			}
-
 		};
 
 		Thread thread1 = new Thread(writer, "Thread A");
