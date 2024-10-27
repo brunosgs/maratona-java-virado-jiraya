@@ -13,6 +13,10 @@ public class Person {
 		this.email = email;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
 	@Override
 	public String toString() {
 		return "Person [firstName=" + firstName + ", lastName=" + lastName + ", username=" + username + ", email=" + email + "]";
