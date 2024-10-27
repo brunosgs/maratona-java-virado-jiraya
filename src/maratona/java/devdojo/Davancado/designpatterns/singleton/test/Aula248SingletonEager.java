@@ -8,7 +8,7 @@ import maratona.java.devdojo.Davancado.designpatterns.singleton.domain.AircraftS
  * que uma classe tenha apenas uma instância, enquanto provê um ponto de acesso
  * global para essa instância.
  */
-public class Aula248Singleton {
+public class Aula248SingletonEager {
 
 	public static void main(String[] args) {
 		bookSeat("1A");
