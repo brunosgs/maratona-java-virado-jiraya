@@ -1,0 +1,22 @@
+services:
+ db:
+  image: mysql
+  container_name: mysql-docker
+  environment:
+   MYSQL_ROOT_PASSWORD: root
+  ports:
+   - "3306:3307"
+  volumes:
+   - devdojo_maratona_data:/var/lib/mysql
+
+volumes:
+ devdojo_maratona_data:
+
+#Comandos
+
+# docker-compose up: executa o arquivo .yml e faz download da imagem
+# docker ps: verificar quais containers estão sendo executados
+# CTRL+C: finalizar o container via terminal
+# docker ps -a: verifica todos as imagens
+# docker-compose down: remove a imagem mas não os volume (verificar a documentação)
+# docker volume ls: verifica os volumes criados
