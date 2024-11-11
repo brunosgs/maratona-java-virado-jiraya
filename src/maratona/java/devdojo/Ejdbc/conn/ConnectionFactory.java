@@ -12,19 +12,11 @@ import java.sql.SQLException;
  * - java.sql = Connection, Statement, ResultSet e DriverManager
  */
 public class ConnectionFactory {
-	public static Connection getConnection() {
+	public static Connection getConnection() throws SQLException {
 		String url = "jdbc:mysql://localhost:3306/anime_store";
 		String username = "root";
 		String password = "root";
-		Connection conn = null;
 
-		try {
-			conn = DriverManager.getConnection(url, username, password);
-			System.out.println(conn);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return conn;
+		return DriverManager.getConnection(url, username, password);
 	}
 }
