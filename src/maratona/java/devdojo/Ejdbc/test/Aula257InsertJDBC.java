@@ -7,7 +7,7 @@ public class Aula257InsertJDBC {
 
 	public static void main(String[] args) {
 		Producer producer = Producer.builder()
-				.name("NHK")
+				.name("Studio Deen")
 				.build();
 
 		ProducerRepository.save(producer);
