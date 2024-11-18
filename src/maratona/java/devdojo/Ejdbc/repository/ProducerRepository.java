@@ -68,26 +68,50 @@ public class ProducerRepository {
 	 */
 	public static List<Producer> findAll() {
 		log.info("Finding all Producers");
+
 		List<Producer> producers = new ArrayList<>();
 		String sql = "select id, name from producer;";
 
 		try (Connection conn = ConnectionFactory.getConnection();
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql)) {
-
-			while (rs.next()) {
-				Long id = rs.getLong("id");
-				String name = rs.getString("name");
-
-				Producer producer = Producer.builder()
-						.id(id)
-						.name(name)
-						.build();
-
-				producers.add(producer);
-			}
+			producers.addAll(resultFind(rs));
 		} catch (SQLException e) {
 			log.error("Error while trying to find all producers", e);
+		}
+
+		return producers;
+	}
+
+	public static List<Producer> findByName(String paramsName) {
+		log.info("Finding by name Producers");
+		List<Producer> producers = new ArrayList<>();
+		String sql = "select id, name from producer where name like '%%%s%%';".formatted(paramsName);
+
+		try (Connection conn = ConnectionFactory.getConnection();
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql)) {
+			producers.addAll(resultFind(rs));
+		} catch (SQLException e) {
+			log.error("Error while trying to find all producers", e);
+		}
+
+		return producers;
+	}
+
+	private static List<Producer> resultFind(ResultSet rs) throws SQLException {
+		List<Producer> producers = new ArrayList<>();
+
+		while (rs.next()) {
+			Long id = rs.getLong("id");
+			String name = rs.getString("name");
+
+			Producer producer = Producer.builder()
+					.id(id)
+					.name(name)
+					.build();
+
+			producers.add(producer);
 		}
 
 		return producers;
