@@ -16,13 +16,31 @@ public class ProducerRepository {
 		try (Connection conn = ConnectionFactory.getConnection(); Statement stmt = conn.createStatement()) {
 			int rowsAffected = stmt.executeUpdate(sql);
 
-			log.info("Inserted producer in the database, rows affected {}", rowsAffected);
+			log.info("Inserted producer '{}' in the database, rows affected '{}'", producer.getName(), rowsAffected);
 
 			conn.close();
 			stmt.close();
-
 		} catch (SQLException e) {
-			log.error("Error connect: ", e);
+			log.error("Error while trying to insert producer '{}'", producer.getName(), e);
+		}
+	}
+
+	public static void delete(Long id) {
+		String sql = "delete from producer where id = %d;".formatted(id);
+
+		try (Connection conn = ConnectionFactory.getConnection(); Statement stmt = conn.createStatement()) {
+			int rowsAffected = stmt.executeUpdate(sql);
+
+			if (rowsAffected <= 0) {
+				log.info("Producer not found to delete, rows affected '{}'", rowsAffected);
+			} else {
+				log.info("Deleted producer id '{}' from the database, rows affected '{}'", id, rowsAffected);
+			}
+
+			conn.close();
+			stmt.close();
+		} catch (SQLException e) {
+			log.error("Error while trying to delete producer id: '{}'", id, e);
 		}
 	}
 }
