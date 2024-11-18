@@ -1,5 +1,7 @@
 package maratona.java.devdojo.Ejdbc.service;
 
+import java.util.List;
+
 import maratona.java.devdojo.Ejdbc.dominio.Producer;
 import maratona.java.devdojo.Ejdbc.repository.ProducerRepository;
 
@@ -16,6 +18,10 @@ public class ProducerService {
 	public static void update(Producer producer) {
 		requiredValidId(producer.getId());
 		ProducerRepository.update(producer);
+	}
+
+	public static List<Producer> findAll() {
+		return ProducerRepository.findAll();
 	}
 
 	private static void requiredValidId(Long id) {

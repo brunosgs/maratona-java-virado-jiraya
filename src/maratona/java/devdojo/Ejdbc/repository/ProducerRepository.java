@@ -1,8 +1,11 @@
 package maratona.java.devdojo.Ejdbc.repository;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.extern.log4j.Log4j2;
 import maratona.java.devdojo.Ejdbc.conn.ConnectionFactory;
@@ -21,9 +24,6 @@ public class ProducerRepository {
 			int rowsAffected = stmt.executeUpdate(sql);
 
 			log.info("Inserted producer '{}' in the database, rows affected '{}'", producer.getName(), rowsAffected);
-
-			conn.close();
-			stmt.close();
 		} catch (SQLException e) {
 			log.error("Error while trying to insert producer '{}'", producer.getName(), e);
 		}
@@ -40,9 +40,6 @@ public class ProducerRepository {
 			} else {
 				log.info("Deleted producer id '{}' from the database, rows affected '{}'", id, rowsAffected);
 			}
-
-			conn.close();
-			stmt.close();
 		} catch (SQLException e) {
 			log.error("Error while trying to delete producer id: '{}'", id, e);
 		}
@@ -59,11 +56,40 @@ public class ProducerRepository {
 			} else {
 				log.info("Updated producer id '{}', rows affected '{}'", producer.getId(), rowsAffected);
 			}
-
-			conn.close();
-			stmt.close();
 		} catch (SQLException e) {
 			log.error("Error while trying to update producer id: '{}'", producer.getId(), e);
 		}
+	}
+
+	/**
+	 * - Para busca informações e depois converter para o objeto, deve se usar o
+	 * ResultSet e seus métodos para extrair as informações que representa cada
+	 * campo do objeto.
+	 */
+	public static List<Producer> findAll() {
+		log.info("Finding all Producers");
+		List<Producer> producers = new ArrayList<>();
+		String sql = "select id, name from producer;";
+
+		try (Connection conn = ConnectionFactory.getConnection();
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql)) {
+
+			while (rs.next()) {
+				Long id = rs.getLong("id");
+				String name = rs.getString("name");
+
+				Producer producer = Producer.builder()
+						.id(id)
+						.name(name)
+						.build();
+
+				producers.add(producer);
+			}
+		} catch (SQLException e) {
+			log.error("Error while trying to find all producers", e);
+		}
+
+		return producers;
 	}
 }
