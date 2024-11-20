@@ -207,21 +207,75 @@ public class ProducerRepository {
 		}
 	}
 
+	/**
+	 * - A chamadas last, first, absolute e relative estão movimentando o cursor no
+	 * ResultSet. A cada chamada ele esta em um lugar diferente;
+	 * <p>
+	 * - Chamadas como isLast, isFirst, isBeforeFirst e is
+	 */
+	public static void showTypeScrollWorking() {
+		log.info("Show TYPE_SCROLL_INSENSITIVE");
+
+		String sql = "select id, name from producer;";
+
+		try (Connection conn = ConnectionFactory.getConnection();
+				Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+				ResultSet rs = stmt.executeQuery(sql)) {
+
+			rs.last();
+			Producer resultFindLast = builderProducer(rs);
+			log.info("Last result '{}'", resultFindLast);
+			log.info("Row number '{}'", rs.getRow());
+
+			rs.first();
+			Producer resultFindFirst = builderProducer(rs);
+			log.info("First result '{}'", resultFindFirst);
+			log.info("Row number '{}'", rs.getRow());
+
+			rs.absolute(10);
+			Producer resultFindAbsolute = builderProducer(rs);
+			log.info("Absolute result '{}'", resultFindAbsolute);
+			log.info("Row number '{}'", rs.getRow());
+
+			rs.relative(-2);
+			Producer resultFindRelative = builderProducer(rs);
+			log.info("Absolute result '{}'", resultFindRelative);
+			log.info("Row number '{}'", rs.getRow());
+
+			log.info("Row is last? '{}'", rs.isLast());
+			log.info("Row is first? '{}'", rs.isFirst());
+			log.info("Row is after last? '{}'", rs.isAfterLast());
+			log.info("Row is before first? '{}'", rs.isBeforeFirst());
+
+			rs.last(); // Aponta para o ultimo
+			rs.next(); // Aponta para o proximo
+
+			// Retorna para o ultimo e depois faz a sequencia...
+			while (rs.previous()) {
+				log.info(builderProducer(rs));
+			}
+		} catch (SQLException e) {
+			log.error("Error while trying to find all producers", e);
+		}
+	}
+
 	private static List<Producer> resultFind(ResultSet rs) throws SQLException {
 		List<Producer> producers = new ArrayList<>();
 
 		while (rs.next()) {
-			Long id = rs.getLong("id");
-			String name = rs.getString("name");
-
-			Producer producer = Producer.builder()
-					.id(id)
-					.name(name)
-					.build();
-
-			producers.add(producer);
+			producers.add(builderProducer(rs));
 		}
 
 		return producers;
+	}
+
+	private static Producer builderProducer(ResultSet rs) throws SQLException {
+		Long id = rs.getLong("id");
+		String name = rs.getString("name");
+
+		return Producer.builder()
+				.id(id)
+				.name(name)
+				.build();
 	}
 }
