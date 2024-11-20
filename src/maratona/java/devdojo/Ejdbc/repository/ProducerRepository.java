@@ -1,6 +1,7 @@
 package maratona.java.devdojo.Ejdbc.repository;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -100,7 +101,7 @@ public class ProducerRepository {
 		return producers;
 	}
 
-	public static void showProducerMetadata() {
+	public static void showProducerMetaData() {
 		log.info("Showing Producer Metadata");
 
 		String sql = "select * from producer";
@@ -109,9 +110,6 @@ public class ProducerRepository {
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sql)) {
 			ResultSetMetaData metaData = rs.getMetaData();
-
-			rs.next();
-
 			int columnCount = metaData.getColumnCount();
 
 			for (int i = 1; i <= columnCount; i++) {
@@ -122,6 +120,88 @@ public class ProducerRepository {
 			}
 
 			log.info("Columns count '{}'", columnCount);
+		} catch (SQLException e) {
+			log.error("Error while trying to find all producers", e);
+		}
+	}
+
+	public static void showDriverMetaData() {
+		log.info("Showing Driver Metadata");
+
+		try (Connection conn = ConnectionFactory.getConnection()) {
+			DatabaseMetaData dbMetaData = conn.getMetaData();
+
+			/**
+			 * ResultSet.TYPE_FORWARD_ONLY
+			 * <p>
+			 * - Navegação: Este é o tipo padrão de ResultSet. Ele permite que você mova o
+			 * cursor apenas para frente, de uma linha para a próxima. Você não pode voltar
+			 * para linhas anteriores.
+			 * <p>
+			 * - Uso: É eficiente em termos de recursos e adequado para iteração simples de
+			 * resultados.
+			 */
+			if (dbMetaData.supportsResultSetType(ResultSet.TYPE_FORWARD_ONLY)) {
+				log.info("Supports TYPE_FORWARD_ONLY");
+
+				if (dbMetaData.supportsResultSetConcurrency(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE)) {
+					log.info("And supports CONCUR_UPDATABLE");
+				}
+			}
+
+			/**
+			 * - ResultSet.TYPE_SCROLL_INSENSITIVE
+			 * <p>
+			 * - Navegação: Permite que o cursor se mova para frente e para trás. Você pode
+			 * navegar livremente pelo conjunto de resultados.
+			 * <p>
+			 * - Sensibilidade: Insensível a alterações. Isso significa que se os dados no
+			 * banco de dados forem alterados enquanto você está iterando pelo ResultSet,
+			 * essas mudanças não serão refletidas no ResultSet.
+			 * <p>
+			 * - Uso: Útil quando você precisa navegar de forma arbitrária pelos resultados,
+			 * sem se preocupar com alterações subsequentes aos dados no banco de dados.
+			 */
+			if (dbMetaData.supportsResultSetType(ResultSet.TYPE_SCROLL_INSENSITIVE)) {
+				log.info("Supports TYPE_SCROLL_INSENSITIVE");
+
+				if (dbMetaData.supportsResultSetConcurrency(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE)) {
+					log.info("And supports CONCUR_UPDATABLE");
+				}
+			}
+
+			/**
+			 * - ResultSet.TYPE_SCROLL_SENSITIVE
+			 * <p>
+			 * - Navegação: Permite que o cursor se mova para frente e para trás. Você pode
+			 * navegar livremente pelo conjunto de resultados.
+			 * <p>
+			 * - Sensibilidade: Sensível a alterações. Se os dados no banco de dados forem
+			 * modificados enquanto você estiver iterando, o ResultSet será atualizado para
+			 * refletir essas mudanças.
+			 * <p>
+			 * - Uso: Útil quando você precisa navegar de forma arbitrária e deseja ver as
+			 * alterações feitas nos dados enquanto está processando o ResultSet.
+			 */
+			if (dbMetaData.supportsResultSetType(ResultSet.TYPE_SCROLL_SENSITIVE)) {
+				log.info("Supports TYPE_SCROLL_SENSITIVE");
+
+				if (dbMetaData.supportsResultSetConcurrency(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE)) {
+					log.info("And supports CONCUR_UPDATABLE");
+				}
+			}
+
+			/**
+			 * - ResultSet.CONCUR_UPDATABLE
+			 * <p>
+			 * - Concorrência: Este modo permite que você atualize os dados no conjunto de
+			 * resultados. Você pode usar métodos como updateRow(), insertRow() e
+			 * deleteRow() para modificar diretamente os dados no ResultSet.
+			 * <p>
+			 * - Uso: Ideal para aplicações onde você precisa manipular os dados diretamente
+			 * a partir do ResultSet, como uma interface de usuário que permite edição de
+			 * dados.
+			 */
 		} catch (SQLException e) {
 			log.error("Error while trying to find all producers", e);
 		}

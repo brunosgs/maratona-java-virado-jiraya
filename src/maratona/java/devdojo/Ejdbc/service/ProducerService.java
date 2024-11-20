@@ -29,7 +29,11 @@ public class ProducerService {
 	}
 
 	public static void showProducerMetadata() {
-		ProducerRepository.showProducerMetadata();
+		ProducerRepository.showProducerMetaData();
+	}
+
+	public static void showDriverMetaData() {
+		ProducerRepository.showDriverMetaData();
 	}
 
 	private static void requiredValidId(Long id) {
