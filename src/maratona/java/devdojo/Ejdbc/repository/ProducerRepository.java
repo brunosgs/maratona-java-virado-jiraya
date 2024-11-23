@@ -2,6 +2,7 @@ package maratona.java.devdojo.Ejdbc.repository;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -322,12 +323,15 @@ public class ProducerRepository {
 
 	public static List<Producer> findByNamePreparedStatement(String paramsName) {
 		log.info("Finding by name prepared statement Producers");
+
 		List<Producer> producers = new ArrayList<>();
-		String sql = "select * from producer where name like '%s';".formatted(paramsName);
+
+		// Wildcard '?'
+		String sql = "select * from producer where name like ?;";
 
 		try (Connection conn = ConnectionFactory.getConnection();
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql)) {
+				PreparedStatement pstmt = createdPreparedStatement(conn, sql, paramsName);
+				ResultSet rs = pstmt.executeQuery()) {
 			producers.addAll(resultFind(rs));
 		} catch (SQLException e) {
 			log.error("Error while trying to find all producers", e);
@@ -395,5 +399,17 @@ public class ProducerRepository {
 				.name(name)
 				.dateTo(timestamp.toLocalDateTime())
 				.build();
+	}
+
+	/**
+	 * - O 'PreparedStatement' serve para pre compilar o SQL e evitar também o SQL
+	 * injection;
+	 */
+	private static PreparedStatement createdPreparedStatement(Connection conn, String sql, String paramsName) throws SQLException {
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		pstmt.setString(1, String.format("%%%s%%", paramsName));
+
+		return pstmt;
 	}
 }
