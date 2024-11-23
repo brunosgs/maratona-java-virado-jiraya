@@ -259,10 +259,45 @@ public class ProducerRepository {
 		}
 	}
 
+	public static List<Producer> findByNameAndUpdateToUpperCase(String paramsName) {
+		log.info("Finding by name Producers");
+
+		List<Producer> producers = new ArrayList<>();
+		String sql = "select id, name from producer where name like '%%%s%%';".formatted(paramsName);
+
+		try (Connection conn = ConnectionFactory.getConnection();
+				Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+				ResultSet rs = stmt.executeQuery(sql)) {
+
+			producers.addAll(resultFindUpdateToUpperCase(rs));
+		} catch (SQLException e) {
+			log.error("Error while trying to find by name producers", e);
+		}
+
+		return producers;
+	}
+
 	private static List<Producer> resultFind(ResultSet rs) throws SQLException {
 		List<Producer> producers = new ArrayList<>();
 
 		while (rs.next()) {
+			producers.add(builderProducer(rs));
+		}
+
+		return producers;
+	}
+
+	private static List<Producer> resultFindUpdateToUpperCase(ResultSet rs) throws SQLException {
+		List<Producer> producers = new ArrayList<>();
+
+		/**
+		 * Executa a atualização do campo e persiste em banco com 'updateRow()' a
+		 * informação localizada;
+		 */
+		while (rs.next()) {
+			rs.updateString("name", rs.getString("name")
+					.toUpperCase());
+			rs.updateRow();
 			producers.add(builderProducer(rs));
 		}
 
