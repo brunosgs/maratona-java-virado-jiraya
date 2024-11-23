@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,7 +74,7 @@ public class ProducerRepository {
 		log.info("Finding all Producers");
 
 		List<Producer> producers = new ArrayList<>();
-		String sql = "select id, name from producer;";
+		String sql = "select * from producer;";
 
 		try (Connection conn = ConnectionFactory.getConnection();
 				Statement stmt = conn.createStatement();
@@ -88,7 +90,7 @@ public class ProducerRepository {
 	public static List<Producer> findByName(String paramsName) {
 		log.info("Finding by name Producers");
 		List<Producer> producers = new ArrayList<>();
-		String sql = "select id, name from producer where name like '%%%s%%';".formatted(paramsName);
+		String sql = "select * from producer where name like '%%%s%%';".formatted(paramsName);
 
 		try (Connection conn = ConnectionFactory.getConnection();
 				Statement stmt = conn.createStatement();
@@ -216,7 +218,7 @@ public class ProducerRepository {
 	public static void showTypeScrollWorking() {
 		log.info("Show TYPE_SCROLL_INSENSITIVE");
 
-		String sql = "select id, name from producer;";
+		String sql = "select * from producer;";
 
 		try (Connection conn = ConnectionFactory.getConnection();
 				Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -263,7 +265,7 @@ public class ProducerRepository {
 		log.info("Finding by name Producers");
 
 		List<Producer> producers = new ArrayList<>();
-		String sql = "select id, name from producer where name like '%%%s%%';".formatted(paramsName);
+		String sql = "select * from producer where name like '%%%s%%';".formatted(paramsName);
 
 		try (Connection conn = ConnectionFactory.getConnection();
 				Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -275,6 +277,69 @@ public class ProducerRepository {
 		}
 
 		return producers;
+	}
+
+	public static List<Producer> findByNameAndInsertWhenNotFound(String paramsName) {
+		log.info("Finding by name Producers or insert when not found");
+
+		String sql = "select * from producer where name like '%%%s%%';".formatted(paramsName);
+
+		try (Connection conn = ConnectionFactory.getConnection();
+				Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+				ResultSet rs = stmt.executeQuery(sql)) {
+
+			if (!rs.next()) {
+				insertNewProducer(rs, paramsName);
+				rs.beforeFirst();
+
+				return resultFind(rs);
+			}
+
+			rs.beforeFirst();
+
+			return resultFind(rs);
+		} catch (SQLException e) {
+			log.error("Error while trying to find by name producers", e);
+		}
+
+		return new ArrayList<Producer>();
+	}
+
+	public static void findByNameAndDelete(String paramsNames) {
+		String sql = "select * from producer where name like '%%%s%%';".formatted(paramsNames);
+
+		try (Connection conn = ConnectionFactory.getConnection();
+				Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+				ResultSet rs = stmt.executeQuery(sql)) {
+			while (rs.next()) {
+				log.info("Deleting '{}'", rs.getString("name"));
+				rs.deleteRow();
+			}
+		} catch (SQLException e) {
+			log.error("Error while trying to delete producers by name", e);
+		}
+	}
+
+	private static void insertNewProducer(ResultSet rs, String paramsName) throws SQLException {
+		/**
+		 * - 'moveToInsertRow()'
+		 * <p>
+		 * Move o cursor para a linha de inserção. A posição atual do cursor é lembrada
+		 * enquanto o cursor está posicionado na linha de inserção. A linha de inserção
+		 * é uma linha especial associada a um conjunto de resultados atualizável. É
+		 * essencialmente um buffer onde uma nova linha pode ser construída chamando os
+		 * métodos do atualizador antes de inserir a linha no conjunto de resultados.
+		 * Apenas os métodos do atualizador, getter e insertRow podem ser chamados
+		 * quando o cursor está na linha de inserção. Todas as colunas em um conjunto de
+		 * resultados devem receber um valor cada vez que este método for chamado antes
+		 * de chamar insertRow. Um método do atualizador deve ser chamado antes que o
+		 * método agetter possa ser chamado em um valor de coluna.
+		 */
+		rs.moveToInsertRow();
+		rs.updateString("name", paramsName);
+		rs.updateTimestamp("date_to", Timestamp.valueOf(LocalDateTime.now()));
+		rs.insertRow();
+		log.info("Name not found, but a new Producer was inserted.");
 	}
 
 	private static List<Producer> resultFind(ResultSet rs) throws SQLException {
@@ -307,10 +372,12 @@ public class ProducerRepository {
 	private static Producer builderProducer(ResultSet rs) throws SQLException {
 		Long id = rs.getLong("id");
 		String name = rs.getString("name");
+		Timestamp timestamp = rs.getTimestamp("date_to");
 
 		return Producer.builder()
 				.id(id)
 				.name(name)
+				.dateTo(timestamp.toLocalDateTime())
 				.build();
 	}
 }

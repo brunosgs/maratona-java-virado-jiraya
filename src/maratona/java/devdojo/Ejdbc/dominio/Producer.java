@@ -10,5 +10,5 @@ import lombok.Value;
 public class Producer {
 	Long id;
 	String name;
-	LocalDateTime dateTo = LocalDateTime.now();
+	LocalDateTime dateTo;
 }

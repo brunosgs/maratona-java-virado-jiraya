@@ -1,6 +1,7 @@
 package maratona.java.devdojo.Ejdbc.test;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.extern.log4j.Log4j2;
 import maratona.java.devdojo.Ejdbc.dominio.Producer;
@@ -11,11 +12,11 @@ public class Aula266UpdateWithResultSetJDBC {
 
 	public static void main(String[] args) {
 		List<Producer> listProducersByName = ProducerService.findByNameAndUpdateToUpperCase("Deen");
+		String producersFormatted = listProducersByName.stream()
+				.map(Producer::toString)
+				.collect(Collectors.joining(System.lineSeparator()));
 
-		listProducersByName.stream()
-				.forEach(System.out::println);
-
-		log.info("Producers found '{}'", listProducersByName);
+		log.info(String.format("Producers found: %n%s", producersFormatted));
 	}
 
 }

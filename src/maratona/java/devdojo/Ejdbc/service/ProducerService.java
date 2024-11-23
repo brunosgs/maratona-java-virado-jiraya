@@ -44,6 +44,14 @@ public class ProducerService {
 		return ProducerRepository.findByNameAndUpdateToUpperCase(paramsName);
 	}
 
+	public static List<Producer> findByNameAndInsertWhenNotFound(String paramsName) {
+		return ProducerRepository.findByNameAndInsertWhenNotFound(paramsName);
+	}
+
+	public static void findByNameAndDelete(String paramsName) {
+		ProducerRepository.findByNameAndDelete(paramsName);
+	}
+
 	private static void requiredValidId(Long id) {
 		if (id == null || id <= 0) {
 			throw new IllegalArgumentException("Ivalid value for id: %d".formatted(id));

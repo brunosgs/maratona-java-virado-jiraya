@@ -7,8 +7,8 @@ public class Aula260UpdateJDBC {
 
 	public static void main(String[] args) {
 		Producer producerToUpdate = Producer.builder()
-				.id(10L)
-				.name("MADHOUSE")
+				.id(3L)
+				.name("TMS Entertainment")
 				.build();
 
 		ProducerService.update(producerToUpdate);

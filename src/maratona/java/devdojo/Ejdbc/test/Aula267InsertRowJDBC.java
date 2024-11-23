@@ -8,11 +8,11 @@ import maratona.java.devdojo.Ejdbc.dominio.Producer;
 import maratona.java.devdojo.Ejdbc.service.ProducerService;
 
 @Log4j2
-public class Aula262FindByNameJDBC {
+public class Aula267InsertRowJDBC {
 
 	public static void main(String[] args) {
-		List<Producer> listProducersByName = ProducerService.findByName("MAD");
-		String producersFormatted = listProducersByName.stream()
+		List<Producer> byNameAndInsertWhenNotFound = ProducerService.findByNameAndInsertWhenNotFound("Tezuka Productions");
+		String producersFormatted = byNameAndInsertWhenNotFound.stream()
 				.map(Producer::toString)
 				.collect(Collectors.joining(System.lineSeparator()));
 
