@@ -326,11 +326,8 @@ public class ProducerRepository {
 
 		List<Producer> producers = new ArrayList<>();
 
-		// Wildcard '?'
-		String sql = "select * from producer where name like ?;";
-
 		try (Connection conn = ConnectionFactory.getConnection();
-				PreparedStatement pstmt = createdPreparedStatement(conn, sql, paramsName);
+				PreparedStatement pstmt = preparedStatementFindByName(conn, paramsName);
 				ResultSet rs = pstmt.executeQuery()) {
 			producers.addAll(resultFind(rs));
 		} catch (SQLException e) {
@@ -338,6 +335,20 @@ public class ProducerRepository {
 		}
 
 		return producers;
+	}
+
+	public static void updateProducerPreparedStatement(Producer producer) {
+		try (Connection conn = ConnectionFactory.getConnection(); PreparedStatement pstmt = preparedStatementUpdate(conn, producer)) {
+			int rowsAffected = pstmt.executeUpdate();
+
+			if (rowsAffected <= 0) {
+				log.info("Producer not found to update, rows affected '{}'", rowsAffected);
+			} else {
+				log.info("Updated producer id '{}', rows affected '{}'", producer.getId(), rowsAffected);
+			}
+		} catch (SQLException e) {
+			log.error("Error while trying to update producer id: '{}'", producer.getId(), e);
+		}
 	}
 
 	private static void insertNewProducer(ResultSet rs, String paramsName) throws SQLException {
@@ -405,10 +416,23 @@ public class ProducerRepository {
 	 * - O 'PreparedStatement' serve para pre compilar o SQL e evitar também o SQL
 	 * injection;
 	 */
-	private static PreparedStatement createdPreparedStatement(Connection conn, String sql, String paramsName) throws SQLException {
+	private static PreparedStatement preparedStatementFindByName(Connection conn, String paramsName) throws SQLException {
+		// Wildcard '?'
+		String sql = "select * from producer where name like ?;";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 
 		pstmt.setString(1, String.format("%%%s%%", paramsName));
+
+		return pstmt;
+	}
+
+	private static PreparedStatement preparedStatementUpdate(Connection conn, Producer producer) throws SQLException {
+		// Wildcard '?'
+		String sql = "update producer set name = ? where id = ?;";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		pstmt.setString(1, producer.getName());
+		pstmt.setLong(2, producer.getId());
 
 		return pstmt;
 	}

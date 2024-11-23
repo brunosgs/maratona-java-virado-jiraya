@@ -56,6 +56,11 @@ public class ProducerService {
 		return ProducerRepository.findByNamePreparedStatement(paramsName);
 	}
 
+	public static void updateProducerPreparedStatement(Producer producer) {
+		requiredValidId(producer.getId());
+		ProducerRepository.updateProducerPreparedStatement(producer);
+	}
+
 	private static void requiredValidId(Long id) {
 		if (id == null || id <= 0) {
 			throw new IllegalArgumentException("Ivalid value for id: %d".formatted(id));
