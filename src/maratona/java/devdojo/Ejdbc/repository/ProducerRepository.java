@@ -320,6 +320,22 @@ public class ProducerRepository {
 		}
 	}
 
+	public static List<Producer> findByNamePreparedStatement(String paramsName) {
+		log.info("Finding by name prepared statement Producers");
+		List<Producer> producers = new ArrayList<>();
+		String sql = "select * from producer where name like '%s';".formatted(paramsName);
+
+		try (Connection conn = ConnectionFactory.getConnection();
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(sql)) {
+			producers.addAll(resultFind(rs));
+		} catch (SQLException e) {
+			log.error("Error while trying to find all producers", e);
+		}
+
+		return producers;
+	}
+
 	private static void insertNewProducer(ResultSet rs, String paramsName) throws SQLException {
 		/**
 		 * - 'moveToInsertRow()'
