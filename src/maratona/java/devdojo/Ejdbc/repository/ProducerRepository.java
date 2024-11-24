@@ -1,5 +1,6 @@
 package maratona.java.devdojo.Ejdbc.repository;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -351,6 +352,22 @@ public class ProducerRepository {
 		}
 	}
 
+	public static List<Producer> findByNameCallableStatement(String paramsName) {
+		log.info("Finding by name callable Producers");
+
+		List<Producer> producers = new ArrayList<>();
+
+		try (Connection conn = ConnectionFactory.getConnection();
+				CallableStatement callst = callableStatementFindByName(conn, paramsName);
+				ResultSet rs = callst.executeQuery()) {
+			producers.addAll(resultFind(rs));
+		} catch (SQLException e) {
+			log.error("Error while trying to find all producers", e);
+		}
+
+		return producers;
+	}
+
 	private static void insertNewProducer(ResultSet rs, String paramsName) throws SQLException {
 		/**
 		 * - 'moveToInsertRow()'
@@ -435,5 +452,15 @@ public class ProducerRepository {
 		pstmt.setLong(2, producer.getId());
 
 		return pstmt;
+	}
+
+	private static CallableStatement callableStatementFindByName(Connection conn, String paramsName) throws SQLException {
+		// Wildcard '?'
+		String sql = "call pc_get_producer_by_name(?);";
+		CallableStatement callst = conn.prepareCall(sql);
+
+		callst.setString(1, paramsName);
+
+		return callst;
 	}
 }
