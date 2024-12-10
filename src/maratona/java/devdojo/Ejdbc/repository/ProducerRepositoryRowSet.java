@@ -10,6 +10,7 @@ import javax.sql.rowset.JdbcRowSet;
 import lombok.extern.log4j.Log4j2;
 import maratona.java.devdojo.Ejdbc.conn.ConnectionFactory;
 import maratona.java.devdojo.Ejdbc.dominio.Producer;
+import maratona.java.devdojo.Ejdbc.listener.CustomRowSetListener;
 
 @Log4j2
 public class ProducerRepositoryRowSet {
@@ -18,6 +19,7 @@ public class ProducerRepositoryRowSet {
 		List<Producer> producers = new ArrayList<>();
 
 		try (JdbcRowSet jrs = ConnectionFactory.getJdbcRowSet()) {
+			jrs.addRowSetListener(new CustomRowSetListener());
 			jrs.setCommand(sql);
 			jrs.setString(1, String.format("%%%s%%", paramsName));
 			jrs.execute();
@@ -30,6 +32,26 @@ public class ProducerRepositoryRowSet {
 		}
 
 		return producers;
+	}
+
+	public static void updateJdbcRowSet(Producer producer) {
+		String sql = "select * from producer where id = ?;";
+
+		try (JdbcRowSet jrs = ConnectionFactory.getJdbcRowSet()) {
+			jrs.addRowSetListener(new CustomRowSetListener());
+			jrs.setCommand(sql);
+			jrs.setLong(1, producer.getId());
+			jrs.execute();
+
+			if (!jrs.next()) {
+				return;
+			}
+
+			jrs.updateString("name", producer.getName());
+			jrs.updateRow();
+		} catch (SQLException e) {
+			log.error("Error while trying to find by name producers with jdbc row set", e);
+		}
 	}
 
 	private static Producer builderProducer(JdbcRowSet jrs) throws SQLException {
