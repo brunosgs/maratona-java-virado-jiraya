@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.JdbcRowSet;
 import javax.sql.rowset.RowSetProvider;
 
@@ -36,5 +37,10 @@ public class ConnectionFactory {
 		jdbcRowSet.setPassword(password);
 
 		return jdbcRowSet;
+	}
+
+	public static CachedRowSet getCachedRowSet() throws SQLException {
+		return RowSetProvider.newFactory()
+				.createCachedRowSet();
 	}
 }

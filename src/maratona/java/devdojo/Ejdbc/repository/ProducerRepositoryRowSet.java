@@ -1,10 +1,13 @@
 package maratona.java.devdojo.Ejdbc.repository;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.JdbcRowSet;
 
 import lombok.extern.log4j.Log4j2;
@@ -50,6 +53,38 @@ public class ProducerRepositoryRowSet {
 			jrs.updateString("name", producer.getName());
 			jrs.updateRow();
 		} catch (SQLException e) {
+			log.error("Error while trying to find by name producers with jdbc row set", e);
+		}
+	}
+
+	public static void updateCachedRowSet(Producer producer) {
+		String sql = "select * from producer where id = ?;";
+
+		/*
+		 * Todas alterações executadas via CachedRowSet, teram que ser reenviadas ao
+		 * banco de dados.
+		 */
+		try (CachedRowSet crs = ConnectionFactory.getCachedRowSet(); Connection conn = ConnectionFactory.getConnection()) {
+			conn.setAutoCommit(false); // Banco de dados não fica mais responsável por atualizar
+			crs.setCommand(sql);
+			crs.setLong(1, producer.getId());
+			crs.execute(conn);
+
+			if (!crs.next()) {
+				return;
+			}
+
+			crs.updateString("name", producer.getName());
+			crs.updateRow();
+
+			TimeUnit.SECONDS.sleep(10);
+
+			/*
+			 * 'acceptChanges()' força a atualização, sendo que o proprio driver do mysql
+			 * cuida dessa atualização (autocomit=true).
+			 */
+			crs.acceptChanges();
+		} catch (SQLException | InterruptedException e) {
 			log.error("Error while trying to find by name producers with jdbc row set", e);
 		}
 	}
