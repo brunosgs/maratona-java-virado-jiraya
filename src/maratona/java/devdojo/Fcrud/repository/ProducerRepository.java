@@ -30,6 +30,15 @@ public class ProducerRepository {
 		return producers;
 	}
 
+	public static void delete(Long id) {
+		try (Connection conn = ConnectionFactory.getConnection(); PreparedStatement pstmt = createPreparedStatementDelete(conn, id)) {
+			pstmt.execute();
+			log.info("Deleted producer '{}' from the database", id);
+		} catch (SQLException e) {
+			log.error("Error while trying to delete producer: '{}'", id, e);
+		}
+	}
+
 	/**
 	 * - O 'PreparedStatement' serve para pre compilar o SQL e evitar também o SQL
 	 * injection;
@@ -40,6 +49,16 @@ public class ProducerRepository {
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 
 		pstmt.setString(1, String.format("%%%s%%", paramsName));
+
+		return pstmt;
+	}
+
+	private static PreparedStatement createPreparedStatementDelete(Connection conn, Long id) throws SQLException {
+		// Wildcard '?'
+		String sql = "delete from producer where id =  ?;";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		pstmt.setLong(1, id);
 
 		return pstmt;
 	}
