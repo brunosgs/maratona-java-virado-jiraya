@@ -35,6 +35,21 @@ public class ProducerRepository {
 		}
 	}
 
+	public static void saveTransactional(List<Producer> producers) {
+		try (Connection conn = ConnectionFactory.getConnection()) {
+			/*
+			 * 'setAutoCommit(false)': define o commit para false onde ele não mais salva
+			 * automaticamente
+			 */
+			conn.setAutoCommit(false);
+			preparedStatementSaveTransactional(conn, producers);
+			conn.commit();
+			conn.setAutoCommit(true);
+		} catch (SQLException e) {
+			log.error("Error while trying to update producer id: '{}'", producers, e);
+		}
+	}
+
 	public static void delete(Long id) {
 		String sql = "delete from producer where id = %d;".formatted(id);
 
@@ -452,6 +467,35 @@ public class ProducerRepository {
 		pstmt.setLong(2, producer.getId());
 
 		return pstmt;
+	}
+
+	private static void preparedStatementSaveTransactional(Connection conn, List<Producer> producers) throws SQLException {
+		// Wildcard '?'
+		String sql = "insert into producer (name, date_to) values (?, ?);";
+		boolean isExecuteBatch = false;
+
+		for (Producer producer : producers) {
+			try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+				log.info("Saving producer '{}'", producer.getName());
+
+				pstmt.setString(1, producer.getName());
+
+				if (producer.getDateTo() != null) {
+					pstmt.setTimestamp(2, Timestamp.valueOf(producer.getDateTo()));
+				}
+
+				pstmt.execute();
+			} catch (SQLException e) {
+				e.printStackTrace();
+
+				isExecuteBatch = true;
+			}
+		}
+
+		if (isExecuteBatch) {
+			log.warn("Transaction is going be rollback");
+			conn.rollback();
+		}
 	}
 
 	private static CallableStatement callableStatementFindByName(Connection conn, String paramsName) throws SQLException {
