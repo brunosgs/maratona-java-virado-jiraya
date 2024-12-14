@@ -39,6 +39,17 @@ public class ProducerRepository {
 		}
 	}
 
+	public static void save(Producer producer) {
+		log.info("Saving producer by name '{}'", producer.getName());
+
+		try (Connection conn = ConnectionFactory.getConnection();
+				PreparedStatement pstmt = createPreparedStatementSave(conn, producer)) {
+			pstmt.execute();
+		} catch (SQLException e) {
+			log.error("Error while trying to saiving producer: '{}'", producer, e);
+		}
+	}
+
 	/**
 	 * - O 'PreparedStatement' serve para pre compilar o SQL e evitar também o SQL
 	 * injection;
@@ -59,6 +70,17 @@ public class ProducerRepository {
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 
 		pstmt.setLong(1, id);
+
+		return pstmt;
+	}
+
+	private static PreparedStatement createPreparedStatementSave(Connection conn, Producer producer) throws SQLException {
+		// Wildcard '?'
+		String sql = "insert into producer (name, date_to) values (?, ?);";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		pstmt.setString(1, producer.getName());
+		pstmt.setTimestamp(2, Timestamp.valueOf(producer.getDateTo()));
 
 		return pstmt;
 	}

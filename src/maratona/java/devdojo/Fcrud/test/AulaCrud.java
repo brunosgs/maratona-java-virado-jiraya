@@ -1,11 +1,12 @@
 package maratona.java.devdojo.Fcrud.test;
 
+import java.util.List;
 import java.util.Scanner;
 
 import maratona.java.devdojo.Fcrud.service.ProducerService;
 
 /**
- * Essa aula é composta pelas aulas (275, 276)
+ * Esse exemplo é composta pelas aulas (275, 276, 277)
  */
 public class AulaCrud {
 	private static final Scanner SCANN = new Scanner(System.in);
@@ -28,10 +29,9 @@ public class AulaCrud {
 	}
 
 	private static void producerMenu() {
-		System.out.println("\nType the number of your operation");
-		System.out.println("1 - Search for producer");
-		System.out.println("2 - Delete producer");
-		System.out.println("0 - Exit\n");
+		List.of("\nType the number of your operation", "1 - Search for producer", "2 - Delete producer", "3 - Save producer",
+				"0 - Exit\n")
+				.forEach(System.out::println);
 	}
 
 }

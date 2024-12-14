@@ -1,6 +1,6 @@
 package maratona.java.devdojo.Fcrud.service;
 
-import java.util.List;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import maratona.java.devdojo.Fcrud.dominio.Producer;
@@ -11,16 +11,10 @@ public class ProducerService {
 
 	public static void menu(int op) {
 		switch (op) {
-		case 1:
-			findByName();
-
-			break;
-		case 2:
-			delete();
-
-			break;
-		default:
-			throw new IllegalArgumentException("Not a valid option!");
+		case 1 -> findByName();
+		case 2 -> delete();
+		case 3 -> save();
+		default -> throw new IllegalArgumentException("Not a valid option!");
 		}
 	}
 
@@ -28,13 +22,8 @@ public class ProducerService {
 		System.out.println("Type the name or empty to all");
 		String paramName = SCANN.nextLine();
 
-		List<Producer> listProducer = ProducerRepository.findByName(paramName);
-
-		for (int i = 0; i < listProducer.size(); i++) {
-			Producer producer = listProducer.get(i);
-
-			System.out.printf("[ID: %d] - %s%n", producer.getId(), producer.getName());
-		}
+		ProducerRepository.findByName(paramName)
+				.forEach(producer -> System.out.printf("[ID: %d] - %s%n", producer.getId(), producer.getName()));
 	}
 
 	private static void delete() {
@@ -51,14 +40,30 @@ public class ProducerService {
 			}
 		}
 
-		System.out.println("Are you sure? (S/N)");
+		System.out.println("Are you sure? (Y/N)");
 		String choice = SCANN.nextLine();
 
-		if ("s".equalsIgnoreCase(choice)) {
+		if ("y".equalsIgnoreCase(choice)) {
 			ProducerRepository.delete(paramId);
 			System.out.println("Producer with ID " + paramId + " has been deleted.");
 		} else {
 			System.out.println("Operation canceled.");
+		}
+	}
+
+	private static void save() {
+		System.out.println("Type the name of the producer");
+		String paramName = SCANN.nextLine();
+
+		if (!paramName.isEmpty()) {
+			Producer producerToSave = Producer.builder()
+					.name(paramName)
+					.dateTo(LocalDateTime.now())
+					.build();
+
+			ProducerRepository.save(producerToSave);
+		} else {
+			System.out.println("Invalid input, empty value");
 		}
 	}
 }
