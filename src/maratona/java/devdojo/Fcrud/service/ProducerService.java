@@ -1,6 +1,7 @@
 package maratona.java.devdojo.Fcrud.service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.Scanner;
 
 import maratona.java.devdojo.Fcrud.dominio.Producer;
@@ -14,16 +15,9 @@ public class ProducerService {
 		case 1 -> findByName();
 		case 2 -> delete();
 		case 3 -> save();
+		case 4 -> update();
 		default -> throw new IllegalArgumentException("Not a valid option!");
 		}
-	}
-
-	private static void findByName() {
-		System.out.println("Type the name or empty to all");
-		String paramName = SCANN.nextLine();
-
-		ProducerRepository.findByName(paramName)
-				.forEach(producer -> System.out.printf("[ID: %d] - %s%n", producer.getId(), producer.getName()));
 	}
 
 	private static void delete() {
@@ -65,5 +59,41 @@ public class ProducerService {
 		} else {
 			System.out.println("Invalid input, empty value");
 		}
+	}
+
+	private static void update() {
+		System.out.println("Type the id of the object you want to update");
+		long paramId = Long.parseLong(SCANN.nextLine());
+
+		Optional<Producer> resultProducer = ProducerRepository.findById(paramId);
+
+		if (resultProducer.isEmpty()) {
+			System.out.println("Producer not found");
+			return;
+		}
+
+		Producer producerFromDb = resultProducer.get();
+		System.out.println("Producer found: " + producerFromDb);
+
+		System.out.println("Type the new name or enter to keep the same");
+		String paramName = SCANN.nextLine();
+
+		paramName = paramName.isEmpty() ? producerFromDb.getName() : paramName;
+
+		Producer producerToUpdate = Producer.builder()
+				.id(producerFromDb.getId())
+				.name(paramName)
+				.dateTo(producerFromDb.getDateTo())
+				.build();
+
+		ProducerRepository.update(producerToUpdate);
+	}
+
+	private static void findByName() {
+		System.out.println("Type the name or empty to all");
+		String paramName = SCANN.nextLine();
+
+		ProducerRepository.findByName(paramName)
+				.forEach(producer -> System.out.printf("[ID: %d] - %s%n", producer.getId(), producer.getName()));
 	}
 }
