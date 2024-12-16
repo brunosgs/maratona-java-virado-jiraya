@@ -3,6 +3,7 @@ package maratona.java.devdojo.Fcrud.test;
 import java.util.List;
 import java.util.Scanner;
 
+import maratona.java.devdojo.Fcrud.service.AnimeService;
 import maratona.java.devdojo.Fcrud.service.ProducerService;
 
 /**
@@ -15,7 +16,7 @@ public class AulaCrud {
 		int op;
 
 		while (true) {
-			producerMenu();
+			menu();
 			op = Integer.parseInt(SCANN.nextLine());
 
 			if (op == 0) {
@@ -23,14 +24,38 @@ public class AulaCrud {
 				break;
 			}
 
-			ProducerService.menu(op);
+			switch (op) {
+				case 1 -> {
+					producerMenu();
+					op = Integer.parseInt(SCANN.nextLine());
+
+					ProducerService.menu(op);
+				}
+				case 2 -> {
+					animeMenu();
+					op = Integer.parseInt(SCANN.nextLine());
+
+					AnimeService.menu(op);
+				}
+			}
 		}
 
 	}
 
+	private static void menu() {
+		List.of("\nType the number of your operation", "1 - Producer", "2 - Anime", "0 - Exit\n")
+				.forEach(System.out::println);
+	}
+
 	private static void producerMenu() {
 		List.of("\nType the number of your operation", "1 - Search for producer", "2 - Delete producer", "3 - Save producer",
-				"4 - Update producer", "0 - Exit\n")
+				"4 - Update producer", "99 - Return\n")
+				.forEach(System.out::println);
+	}
+
+	private static void animeMenu() {
+		List.of("\nType the number of your operation", "1 - Search for anime", "2 - Delete anime", "3 - Save anime",
+				"4 - Update anime", "99 - Return\n")
 				.forEach(System.out::println);
 	}
 

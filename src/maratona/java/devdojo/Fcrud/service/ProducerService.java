@@ -12,11 +12,10 @@ public class ProducerService {
 
 	public static void menu(int op) {
 		switch (op) {
-		case 1 -> findByName();
-		case 2 -> delete();
-		case 3 -> save();
-		case 4 -> update();
-		default -> throw new IllegalArgumentException("Not a valid option!");
+			case 1 -> findByName();
+			case 2 -> delete();
+			case 3 -> save();
+			case 4 -> update();
 		}
 	}
 
